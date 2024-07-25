@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multi-step Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { width: 300px; margin: 0 auto; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; }
+        input[type="text"], input[type="date"] { width: 100%; padding: 8px; box-sizing: border-box; }
+        .button { display: block; width: 100%; padding: 10px; background: #4CAF50; color: white; border: none; cursor: pointer; }
+        .hidden { display: none; }
+        .section { display: none; }
+        .section.active { display: block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Multi-step Form</h2>
+
+        <!-- Section 1: Account Creation -->
+        <div class="section active" id="section1">
+            <h3>Account Creation</h3>
+            <div class="form-group">
+                <label for="fname">First Name:</label>
+                <input type="text" id="fname" name="fname"  required>
+            </div>
+            <div class="form-group">
+                <label for="lname">Last Name:</label>
+                <input type="text" id="lname" name="lname" required>
+            </div>
+            <div class="form-group">
+                <label for="dob">DOB:</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+            <div class="form-group">
+                <label for="mob_no">Mobile Number:</label>
+                <input type="text" id="mob_no" name="mob_no" required>
+            </div>
+            <button class="button" onclick="nextSection('section2')">Next</button>
+        </div>
+
+        <!-- Section 2: Verification -->
+        <div class="section" id="section2">
+            <h3>Verification</h3>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="otp_email">Enter 6 digit OTP (Email):</label>
+                <input type="text" id="otp_email" name="otp_email" required>
+            </div>
+            <div class="form-group">
+                <label for="otp_phone">Enter 6 digit OTP (Phone):</label>
+                <input type="text" id="otp_phone" name="otp_phone" required>
+            </div>
+            <button class="button" onclick="nextSection('section3')">Next</button>
+        </div>
+
+        <!-- Section 3: Captcha Verification -->
+        <div class="section" id="section3">
+            <h3>Captcha Verification</h3>
+            <div class="form-group">
+                <label for="captcha">Captcha: Kem21</label>
+                <input type="text" id="captcha" name="captcha" required>
+            </div>
+            <button class="button" onclick="finishForm()">Finish</button>
+        </div>
+
+        <!-- Section 4: Finish -->
+        <div class="section" id="finishSection">
+            <h3>Account creation completed successfully!</h3>
+        </div>
+    </div>
+
+    <script>
+        function nextSection(sectionId) {
+            var currentSection = document.querySelector('.section.active');
+            currentSection.classList.remove('active');
+            var nextSection = document.getElementById(sectionId);
+            nextSection.classList.add('active');
+        }
+
+        function finishForm() {
+            var currentSection = document.querySelector('.section.active');
+            currentSection.classList.remove('active');
+            var finishSection = document.getElementById('finishSection');
+            finishSection.classList.add('active');
+        }
+    </script>
+</body>
+</html>
